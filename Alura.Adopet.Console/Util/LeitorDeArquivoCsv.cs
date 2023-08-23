@@ -2,7 +2,7 @@
 
 namespace Alura.Adopet.Console.Util
 {
-    public class LeitorDeArquivoCsv
+    public class LeitorDeArquivoCsv : ILeitorDeArquivo
     {
         private string caminhoDoArquivoASerLido;
         public LeitorDeArquivoCsv(string caminhoDoArquivoASerLido)
@@ -10,7 +10,7 @@ namespace Alura.Adopet.Console.Util
             this.caminhoDoArquivoASerLido = caminhoDoArquivoASerLido;
         }
 
-        public virtual List<Pet> RealizaLeitura()
+        public virtual IEnumerable<Pet> RealizaLeitura()
         {
             if (string.IsNullOrEmpty(this.caminhoDoArquivoASerLido))
             {

@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Util;
+using Alura.Adopet.Console.Modelos;
 
 namespace Alura.Adopet.Testes;
 
