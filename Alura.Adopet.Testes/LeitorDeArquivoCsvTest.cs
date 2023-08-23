@@ -3,10 +3,10 @@ using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Testes
 {
-    public class LeitorDeArquivoTest : IDisposable
+    public class LeitorDeArquivoCsvTest : IDisposable
     {
         private string caminhoArquivo;
-        public LeitorDeArquivoTest()
+        public LeitorDeArquivoCsvTest()
         {
             //Setup
             string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
@@ -19,7 +19,7 @@ namespace Alura.Adopet.Testes
         {
             //Arrange            
             //Act
-            var listaDePets = new LeitorDeArquivo(caminhoArquivo).RealizaLeitura()!;
+            var listaDePets = new LeitorDeArquivoCsv(caminhoArquivo).RealizaLeitura()!;
             //Assert
             Assert.NotNull(listaDePets);
             Assert.Single(listaDePets);
@@ -31,7 +31,7 @@ namespace Alura.Adopet.Testes
         {
             //Arrange            
             //Act
-            var listaDePets = new LeitorDeArquivo("").RealizaLeitura();
+            var listaDePets = new LeitorDeArquivoCsv("").RealizaLeitura();
             //Assert
             Assert.Null(listaDePets);
         }
@@ -41,7 +41,7 @@ namespace Alura.Adopet.Testes
         {
             //Arrange            
             //Act
-            var listaDePets = new LeitorDeArquivo(null).RealizaLeitura();
+            var listaDePets = new LeitorDeArquivoCsv(null).RealizaLeitura();
             //Assert
             Assert.Null(listaDePets);
         }

@@ -7,9 +7,9 @@ namespace Alura.Adopet.Console.Comandos
        documentacao: "adopet show <ARQUIVO> comando que exibe no terminal o conteúdo do arquivo importado.")]
     public class Show:IComando
     {
-        private readonly LeitorDeArquivo leitor;
+        private readonly LeitorDeArquivoCsv leitor;
 
-        public Show(LeitorDeArquivo leitor)
+        public Show(LeitorDeArquivoCsv leitor)
         {
             this.leitor = leitor;
         }
