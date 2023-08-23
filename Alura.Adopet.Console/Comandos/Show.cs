@@ -7,9 +7,9 @@ namespace Alura.Adopet.Console.Comandos
        documentacao: "adopet show <ARQUIVO> comando que exibe no terminal o conteúdo do arquivo importado.")]
     public class Show:IComando
     {
-        private readonly LeitorDeArquivoCsv leitor;
+        private readonly ILeitorDeArquivo leitor;
 
-        public Show(LeitorDeArquivoCsv leitor)
+        public Show(ILeitorDeArquivo leitor)
         {
             this.leitor = leitor;
         }
@@ -28,7 +28,8 @@ namespace Alura.Adopet.Console.Comandos
 
         private Task<Result> ExibeConteudoArquivo()
         {           
-            var listaDepets = leitor.RealizaLeitura();       
+            var listaDepets = leitor.RealizaLeitura();
+            if (listaDepets == null) return Task.FromResult(Result.Fail("Não havia pets no arquivo de importação"));
             return Task.FromResult(Result.Ok().WithSuccess(new SuccessWithPets(listaDepets, "Exibição do arquivo realizada com sucesso!")));
 
         }

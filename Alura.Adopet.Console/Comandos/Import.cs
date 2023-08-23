@@ -11,9 +11,9 @@ namespace Alura.Adopet.Console.Comandos
     {
         private readonly HttpClientPet clientPet;
 
-        private readonly LeitorDeArquivoCsv leitor;
+        private readonly ILeitorDeArquivo leitor;
 
-        public Import(HttpClientPet clientPet, LeitorDeArquivoCsv leitor)
+        public Import(HttpClientPet clientPet, ILeitorDeArquivo leitor)
         {
             this.clientPet = clientPet;
             this.leitor = leitor;
@@ -29,6 +29,7 @@ namespace Alura.Adopet.Console.Comandos
             try
             {
                 var listaDePet = leitor.RealizaLeitura();
+                if (listaDePet == null) return Result.Fail("Não havia pets no arquivo de importação");
                 foreach (var pet in listaDePet)
                 {                       
                    await clientPet.CreatePetAsync(pet);               
@@ -40,10 +41,6 @@ namespace Alura.Adopet.Console.Comandos
 
                 return Result.Fail(new Error("Importação falhou!").CausedBy(exception));
             }
-            
-            
-            
-            
         }
     }
 }
