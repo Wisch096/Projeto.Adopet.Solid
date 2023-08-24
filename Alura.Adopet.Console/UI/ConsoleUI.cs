@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Comandos;
+using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Util;
 using FluentResults;
 
@@ -32,7 +33,7 @@ namespace Alura.Adopet.Console.UI
             var sucesso = result.Successes.First();
             switch (sucesso)
             {
-                case SuccessWithPets s:
+                case SuccessWithData<Pet> s:
                     ExibirPets(s);
                     break;
                 case SuccessWithDocs d:
@@ -51,7 +52,7 @@ namespace Alura.Adopet.Console.UI
             }
         }
 
-        private static void ExibirPets(SuccessWithPets sucesso)
+        private static void ExibirPets(SuccessWithData<Pet> sucesso)
         {
             foreach (var pet in sucesso.Data)
             {

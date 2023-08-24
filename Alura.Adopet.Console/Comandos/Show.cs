@@ -31,7 +31,7 @@ namespace Alura.Adopet.Console.Comandos
         {           
             var listaDepets = leitor.RealizaLeitura();
             if (listaDepets == null) return Task.FromResult(Result.Fail("Não havia pets no arquivo de importação"));
-            return Task.FromResult(Result.Ok().WithSuccess(new SuccessWithPets(listaDepets, "Exibição do arquivo realizada com sucesso!")));
+            return Task.FromResult(Result.Ok().WithSuccess(new SuccessWithData<Pet>(listaDepets, "Exibição do arquivo realizada com sucesso!")));
 
         }
     }

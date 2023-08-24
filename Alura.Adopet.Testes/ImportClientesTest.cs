@@ -7,11 +7,12 @@ using Alura.Adopet.Testes.Builder;
 using Alura.Adopet.Console.Modelos;
 using FluentResults;
 using Xunit;
+using Alura.Adopet.Console.Util;
 
 public class ImportClientesTest
 {
     [Fact]
-    public void Test01()
+    public async Task Test01()
     {
         // arrange
         List<Cliente> listaDeClientes = new();
@@ -27,14 +28,14 @@ public class ImportClientesTest
 
         var httpClientPet = ApiServiceMockBuilder.GetMock<Cliente>();
 
-        //var import = new ImportClientes(httpClientPet.Object, leitorDeArquivo.Object);
+        var comando = new ImportClientes(httpClientPet.Object, leitorDeArquivo.Object);
 
-
-        //// act
-        //Result resultado = await comando.ExecutarAsync();
+        // act
+        Result resultado = await comando.ExecutarAsync();
 
         // assert
-        //Assert.NotNull(resultado);
-        //Assert.True(resultado.IsSuccess);
+        Assert.True(resultado.IsSuccess);
+        var sucesso = (SuccessWithData<Cliente>)resultado.Successes[0];
+        Assert.Equal("Fulano de Tal", sucesso.Data.First().Nome);
     }
 }

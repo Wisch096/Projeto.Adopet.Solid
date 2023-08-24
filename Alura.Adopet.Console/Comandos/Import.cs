@@ -34,7 +34,7 @@ namespace Alura.Adopet.Console.Comandos
                 {                       
                    await clientPet.CreateAsync(pet);               
                 }
-                return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet,"Importação Realizada com Sucesso!"));
+                return Result.Ok().WithSuccess(new SuccessWithData<Pet>(listaDePet,"Importação Realizada com Sucesso!"));
             }
             catch (Exception exception)
             {

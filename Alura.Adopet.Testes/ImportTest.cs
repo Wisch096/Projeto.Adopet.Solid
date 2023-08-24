@@ -64,11 +64,8 @@ namespace Alura.Adopet.Testes
 
             //Assert
             Assert.True(resultado.IsSuccess);
-            var sucesso = (SuccessWithPets)resultado.Successes[0];
+            var sucesso = (SuccessWithData<Pet>)resultado.Successes[0];
             Assert.Equal("Lima",sucesso.Data.First().Nome);
         }
-
-
-
     }
 }

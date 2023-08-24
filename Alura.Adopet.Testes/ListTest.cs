@@ -22,7 +22,7 @@ namespace Alura.Adopet.Testes
                 .ExecutarAsync();
 
             //Assert
-            var resultado = (SuccessWithPets) retorno.Successes[0];
+            var resultado = (SuccessWithData<Pet>) retorno.Successes[0];
             Assert.Single(resultado.Data);
         }
 

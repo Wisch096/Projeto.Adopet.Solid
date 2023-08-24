@@ -25,7 +25,7 @@ namespace Alura.Adopet.Testes
 
             //Assert
             Assert.NotNull(resultado);
-            var sucesso = (SuccessWithPets)resultado.Successes[0];
+            var sucesso = (SuccessWithData<Pet>)resultado.Successes[0];
             Assert.Equal("Exibição do arquivo realizada com sucesso!",
                 sucesso.Message);
         }
