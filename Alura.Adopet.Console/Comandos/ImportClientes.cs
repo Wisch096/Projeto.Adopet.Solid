@@ -2,7 +2,7 @@
 
 namespace Alura.Adopet.Console.Comandos;
 
-public class ImportInteressados : IComando
+public class ImportClientes : IComando
 {
     public Task<Result> ExecutarAsync() 
     {

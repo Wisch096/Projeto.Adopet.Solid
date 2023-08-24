@@ -2,7 +2,7 @@
 
 namespace Alura.Adopet.Console.Util
 {
-    public class LeitorDeArquivoCsv : ILeitorDeArquivo
+    public class LeitorDeArquivoCsv : ILeitorDeArquivo<Pet>
     {
         private string caminhoDoArquivoASerLido;
         public LeitorDeArquivoCsv(string caminhoDoArquivoASerLido)

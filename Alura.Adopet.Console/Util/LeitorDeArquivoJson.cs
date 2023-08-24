@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Alura.Adopet.Console.Util;
 
-public class LeitorDeArquivoJson : ILeitorDeArquivo
+public class LeitorDeArquivoJson : ILeitorDeArquivo<Pet>
 {
     private readonly string caminhoArquivo;
 

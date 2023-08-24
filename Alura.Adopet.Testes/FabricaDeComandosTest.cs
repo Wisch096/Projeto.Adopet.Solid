@@ -53,11 +53,11 @@ namespace Alura.Adopet.Testes
         public void DadoUmParametroDeveRetornarUmTipoImportInteressados()
         {
             //Arrange
-            string[] args = { "import-interessados", "lista.csv" };
+            string[] args = { "import-clientes", "lista.csv" };
             //Act
             var comando = FabricaDeComandos.CriarComando(args);
             //Assert
-            Assert.IsType<ImportInteressados>(comando);
+            Assert.IsType<ImportClientes>(comando);
         }
 
         [Fact]
