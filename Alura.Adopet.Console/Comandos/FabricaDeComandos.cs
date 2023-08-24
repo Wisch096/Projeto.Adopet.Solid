@@ -27,6 +27,8 @@ namespace Alura.Adopet.Console.Comandos
                 case "help":
                     var comandoASerExibido = argumentos.Length==2? argumentos[1] : null;
                     return new Help(comandoASerExibido);
+                case "import-interessados":
+                    return new ImportInteressados();
                 default: return null;
             }           
         }
