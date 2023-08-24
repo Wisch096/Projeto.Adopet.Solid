@@ -16,6 +16,39 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
+        public void DadoUmParametroDeveRetornarUmTipoList()
+        {
+            //Arrange
+            string[] args = { "list", "lista.csv" };
+            //Act
+            var comando = FabricaDeComandos.CriarComando(args);
+            //Assert
+            Assert.IsType<List>(comando);
+        }
+
+        [Fact]
+        public void DadoUmParametroDeveRetornarUmTipoShow()
+        {
+            //Arrange
+            string[] args = { "show", "lista.csv" };
+            //Act
+            var comando = FabricaDeComandos.CriarComando(args);
+            //Assert
+            Assert.IsType<Show>(comando);
+        }
+
+        [Fact]
+        public void DadoUmParametroDeveRetornarUmTipoHelp()
+        {
+            //Arrange
+            string[] args = { "help", "lista.csv" };
+            //Act
+            var comando = FabricaDeComandos.CriarComando(args);
+            //Assert
+            Assert.IsType<Help>(comando);
+        }
+
+        [Fact]
         public void DadoUmParametroInvalidoDeveRetornarNulo()
         {
             //Arrange
