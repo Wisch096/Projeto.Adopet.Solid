@@ -4,7 +4,7 @@ using Alura.Adopet.Console.Modelos;
 
 namespace Alura.Adopet.Console.Servicos
 {
-    public class HttpClientPet
+    public class HttpClientPet : IPetService
     {
         private HttpClient client;     
 
