@@ -15,7 +15,7 @@ namespace Alura.Adopet.Testes
                               "Lima", TipoPet.Cachorro);
             listaDePet.Add(pet);
 
-            var httpClientPet = HttpClientPetMockBuilder.GetMockList(listaDePet);
+            var httpClientPet = ApiServiceMockBuilder.GetMock<Pet>(listaDePet);
 
             //Act
             var retorno = await new Alura.Adopet.Console.Comandos.List(httpClientPet.Object)

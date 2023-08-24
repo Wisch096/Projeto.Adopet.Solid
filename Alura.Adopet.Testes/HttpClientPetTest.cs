@@ -71,7 +71,7 @@ namespace Alura.Adopet.Testes
             var clientePet = new HttpClientPet(httpClient.Object);
 
             //Act
-            var lista = await clientePet.ListPetsAsync();
+            var lista = await clientePet.ListAsync();
 
             //Assert
             Assert.NotNull(lista);
@@ -97,7 +97,7 @@ namespace Alura.Adopet.Testes
             var clientePet = new HttpClientPet(httpClient.Object);
 
             //Act+Assert
-            await Assert.ThrowsAnyAsync<Exception>(()=> clientePet.ListPetsAsync());
+            await Assert.ThrowsAnyAsync<Exception>(()=> clientePet.ListAsync());
 
         }
 

@@ -25,7 +25,7 @@ public class ImportClientesTest
 
         var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDeClientes);
 
-        //var httpClientPet = HttpClientPetMockBuilder.GetMock();
+        var httpClientPet = ApiServiceMockBuilder.GetMock<Cliente>();
 
         //var import = new ImportClientes(httpClientPet.Object, leitorDeArquivo.Object);
 
