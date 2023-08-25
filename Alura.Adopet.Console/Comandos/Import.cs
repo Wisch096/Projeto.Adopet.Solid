@@ -9,11 +9,11 @@ namespace Alura.Adopet.Console.Comandos
         documentacao: "adopet import <ARQUIVO> comando que realiza a importação do arquivo de pets.")]
     public class Import:IComando
     {
-        private readonly IPetService clientPet;
+        private readonly IApiService<Pet> clientPet;
 
         private readonly ILeitorDeArquivo leitor;
 
-        public Import(IPetService clientPet, ILeitorDeArquivo leitor)
+        public Import(IApiService<Pet> clientPet, ILeitorDeArquivo leitor)
         {
             this.clientPet = clientPet;
             this.leitor = leitor;
@@ -32,7 +32,7 @@ namespace Alura.Adopet.Console.Comandos
                 if (listaDePet == null) return Result.Fail("Não havia pets no arquivo de importação");
                 foreach (var pet in listaDePet)
                 {                       
-                   await clientPet.CreatePetAsync(pet);               
+                   await clientPet.CreateAsync(pet);               
                 }
                 return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet,"Importação Realizada com Sucesso!"));
             }

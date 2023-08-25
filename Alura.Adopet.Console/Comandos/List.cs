@@ -9,9 +9,9 @@ namespace Alura.Adopet.Console.Comandos
       documentacao: "adopet list comando que exibe no terminal o conteúdo cadastrado na base de dados da AdoPet.")]
     public class List: IComando
     {
-        private readonly IPetService clientPet;
+        private readonly IApiService<Pet> clientPet;
 
-        public List(IPetService clientPet)
+        public List(IApiService<Pet> clientPet)
         {
             this.clientPet = clientPet;
         }
@@ -25,7 +25,7 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                IEnumerable<Pet>? pets = await clientPet.ListPetsAsync();               
+                IEnumerable<Pet>? pets = await clientPet.ListAsync();               
                 return Result.Ok().WithSuccess(new SuccessWithPets(pets,"Listagem de Pet's realizada com sucesso!"));
             }
             catch (Exception exception)

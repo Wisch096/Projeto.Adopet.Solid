@@ -4,7 +4,7 @@ using Alura.Adopet.Console.Modelos;
 
 namespace Alura.Adopet.Console.Servicos
 {
-    public class HttpClientPet : IPetService
+    public class HttpClientPet : IApiService<Pet>
     {
         private HttpClient client;     
 
@@ -13,12 +13,12 @@ namespace Alura.Adopet.Console.Servicos
             this.client = client;
         }
 
-        public virtual Task CreatePetAsync(Pet pet)
+        public virtual Task CreateAsync(Pet pet)
         {
             return client.PostAsJsonAsync("pet/add", pet);
         }
 
-        public virtual async Task<IEnumerable<Pet>?> ListPetsAsync()
+        public virtual async Task<IEnumerable<Pet>?> ListAsync()
         {
             HttpResponseMessage response = await client.GetAsync("pet/list");
             return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
