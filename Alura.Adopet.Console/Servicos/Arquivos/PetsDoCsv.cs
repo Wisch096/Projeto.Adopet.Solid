@@ -1,39 +1,21 @@
 ﻿using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Servicos.Arquivos;
 
-namespace Alura.Adopet.Console.Util
+namespace Alura.Adopet.Console.Util;
+
+public class PetsDoCsv : LeitorCsv<Pet>
 {
-    public class PetsDoCsv : ILeitorDeArquivo<Pet>
+    public PetsDoCsv(string caminhoDoArquivoASerLido) : base(caminhoDoArquivoASerLido)
+    { }
+
+    protected override Pet? CreateFromCsv(string? csv)
     {
-        private string caminhoDoArquivoASerLido;
-        public PetsDoCsv(string caminhoDoArquivoASerLido)
-        {
-            this.caminhoDoArquivoASerLido = caminhoDoArquivoASerLido;
-        }
-
-        public IEnumerable<Pet>? RealizaLeitura()
-        {
-            if (string.IsNullOrEmpty(this.caminhoDoArquivoASerLido))
-            {
-                return null;
-            }
-            List<Pet> listaDePet = new List<Pet>();
-            using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido))
-            {               
-                while (!sr.EndOfStream)
-                {
-                    // separa linha usando ponto e vírgula
-                    string[]? propriedades = sr.ReadLine().Split(';');
-                    // cria objeto Pet a partir da separação
-                    Pet pet = new Pet(Guid.Parse(propriedades[0]),
-                    propriedades[1],
-                    int.Parse(propriedades[2]) == 1 ? TipoPet.Gato : TipoPet.Cachorro
-                    );
-                    listaDePet.Add(pet);
-                }
-            }
-
-            return listaDePet;
-        }
+        if (csv is null) return null;
+        string[]? propriedades = csv.Split(';');
+        return new Pet(
+            Guid.Parse(propriedades[0]),
+            propriedades[1],
+            int.Parse(propriedades[2]) == 1 ? TipoPet.Gato : TipoPet.Cachorro
+        );
     }
 }

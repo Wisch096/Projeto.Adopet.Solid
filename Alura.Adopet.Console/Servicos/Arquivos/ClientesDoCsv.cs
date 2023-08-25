@@ -1,15 +1,20 @@
 ﻿using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Servicos.Arquivos;
 
 namespace Alura.Adopet.Console;
-public class ClientesDoCsv : ILeitorDeArquivo<Cliente>
+public class ClientesDoCsv : LeitorCsv<Cliente>
 {
-    private readonly string caminhoArquivo;
+    public ClientesDoCsv(string caminhoArquivo) : base(caminhoArquivo) { }
 
-    public ClientesDoCsv(string caminhoArquivo) => this.caminhoArquivo = caminhoArquivo;
-
-    public IEnumerable<Cliente>? RealizaLeitura()
+    protected override Cliente? CreateFromCsv(string? csv)
     {
-        return Enumerable.Empty<Cliente>();
+        if (csv is null) return null;
+        string[] propriedades = csv.Split(',');
+        return new Cliente(
+            id: Guid.Parse(propriedades[0]),
+            nome: propriedades[1],
+            email: propriedades[2],
+            cpf: propriedades[3]
+        );
     }
 }
