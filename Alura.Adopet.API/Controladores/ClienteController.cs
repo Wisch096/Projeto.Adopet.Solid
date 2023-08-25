@@ -10,13 +10,13 @@ using System.IO;
 namespace Alura.Adopet.API.Controladores
 {
     [ApiController]
-    [Route("/pet/")]
-    public class PetController:ControllerBase
+    [Route("/cliente/")]
+    public class ClientController:ControllerBase
     {     
 
         [HttpGet]
         [Route("list")]
-        public async Task<IResult> ListaDePet()
+        public async Task<IResult> ListaDeClientes()
         {
             //
             var _logger = new LoggerConfiguration()
@@ -31,9 +31,9 @@ namespace Alura.Adopet.API.Controladores
             try
             {
                 DataBaseContext _context = new(options);
-                var listaDePet = await _context.Pets.ToListAsync();
+                var listaDeClientes = await _context.Clientes.ToListAsync();
                 _logger.Information("Listagem gerada com sucesso!");
-                return Results.Ok(listaDePet);
+                return Results.Ok(listaDeClientes);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace Alura.Adopet.API.Controladores
 
         [HttpPost]
         [Route("add")]
-        public async Task<IResult> CadatrarPet([FromBody]Pet pet)
+        public async Task<IResult> CadatrarClientes([FromBody]Cliente cliente)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -71,11 +71,11 @@ namespace Alura.Adopet.API.Controladores
             try
             {
                 DataBaseContext _context = new(options);
-                await _context.Pets.AddAsync(pet);
+                await _context.Clientes.AddAsync(cliente);
                 _context.SaveChanges();
-                Log.Information("Pet cadastrado com sucesso!");
+                Log.Information("Cliente cadastrado com sucesso!");
                
-                return Results.Ok("Pet cadastrado com sucesso!");
+                return Results.Ok("Cliente cadastrado com sucesso!");
             }
             catch (Exception ex)
             {

@@ -23,8 +23,7 @@ namespace Alura.Adopet.API.Service
             var pet = new Pet()
             {
                 Nome = "Sábio",
-                Tipo = TipoPet.Gato,
-                Proprietario = proprietario,
+                Tipo = TipoPet.Gato,                
             };
             _context.Add(pet);
             _context.SaveChanges();
