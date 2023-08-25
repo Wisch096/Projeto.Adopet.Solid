@@ -15,7 +15,7 @@ namespace Alura.Adopet.Testes
             List<Pet> listaDePet = new();
             var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
 
-            var httpClientPet = HttpClientPetMockBuilder.GetMock();
+            var httpClientPet = ApiServiceMockBuilder.GetMock<Pet>();
 
             var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
         
@@ -34,7 +34,7 @@ namespace Alura.Adopet.Testes
             var leitor = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
             leitor.Setup(_ => _.RealizaLeitura()).Throws<FileNotFoundException>();
 
-            var httpClientPet = HttpClientPetMockBuilder.GetMock();
+            var httpClientPet = ApiServiceMockBuilder.GetMock<Pet>();
 
             var import = new Import(httpClientPet.Object, leitor.Object);
 
@@ -55,7 +55,7 @@ namespace Alura.Adopet.Testes
             listaDePet.Add(pet);
             var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
 
-            var httpClientPet = HttpClientPetMockBuilder.GetMock();
+            var httpClientPet = ApiServiceMockBuilder.GetMock<Pet>();
 
             var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
           
