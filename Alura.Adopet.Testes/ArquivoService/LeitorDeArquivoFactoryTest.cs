@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Util;
+﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Testes;
 
@@ -11,11 +12,11 @@ public class LeitorDeArquivoFactoryTest
         string nomeArquivo = "lista.csv";
 
         // act
-        ILeitorDeArquivo? leitor = LeitorDeArquivoFactory.CreateLeitor(nomeArquivo);
+        ILeitorDeArquivo<Pet>? leitor = LeitorDeArquivoFactory.CreateLeitorDePet(nomeArquivo);
 
         // assert
         Assert.NotNull(leitor);
-        Assert.IsType<LeitorDeArquivoCsv>(leitor);
+        Assert.IsType<PetsDoCsv>(leitor);
     }
 
     [Fact]
@@ -25,11 +26,11 @@ public class LeitorDeArquivoFactoryTest
         string nomeArquivo = "lista.json";
 
         // act
-        ILeitorDeArquivo? leitor = LeitorDeArquivoFactory.CreateLeitor(nomeArquivo);
+        ILeitorDeArquivo<Pet>? leitor = LeitorDeArquivoFactory.CreateLeitorDePet(nomeArquivo);
 
         // assert
         Assert.NotNull(leitor);
-        Assert.IsType<LeitorDeArquivoJson>(leitor);
+        Assert.IsType<PetsDoJson>(leitor);
     }
 
     [Fact]
@@ -39,7 +40,7 @@ public class LeitorDeArquivoFactoryTest
         string nomeArquivo = "lista.xls";
 
         // act
-        ILeitorDeArquivo? leitor = LeitorDeArquivoFactory.CreateLeitor(nomeArquivo);
+        ILeitorDeArquivo<Pet>? leitor = LeitorDeArquivoFactory.CreateLeitorDePet(nomeArquivo);
 
         // assert
         Assert.Null(leitor);

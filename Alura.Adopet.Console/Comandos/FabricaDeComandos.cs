@@ -16,7 +16,7 @@ namespace Alura.Adopet.Console.Comandos
             {
                 case "import":
                     var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
-                    var leitorDeArquivoImport = LeitorDeArquivoFactory.CreateLeitor(argumentos[1]);
+                    var leitorDeArquivoImport = LeitorDeArquivoFactory.CreateLeitorDePet(argumentos[1]);
                     if (leitorDeArquivoImport == null) return null;
                     return new Import(httpClientPet, leitorDeArquivoImport);
 
@@ -25,7 +25,7 @@ namespace Alura.Adopet.Console.Comandos
                     return new List(httpClientPetList);               
 
                 case "show":
-                    var leitorDeArquivoShow = LeitorDeArquivoFactory.CreateLeitor(argumentos[1]);
+                    var leitorDeArquivoShow = LeitorDeArquivoFactory.CreateLeitorDePet(argumentos[1]);
                     if (leitorDeArquivoShow == null) return null;
                     return new Show(leitorDeArquivoShow);
 

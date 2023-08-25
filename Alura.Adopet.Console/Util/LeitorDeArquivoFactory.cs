@@ -1,11 +1,13 @@
-﻿namespace Alura.Adopet.Console.Util;
+﻿using Alura.Adopet.Console.Modelos;
+
+namespace Alura.Adopet.Console.Util;
 
 public class LeitorDeArquivoFactory
 {
-    public static ILeitorDeArquivo? CreateLeitor(string nomeArquivo) => Path.GetExtension(nomeArquivo) switch
+    public static ILeitorDeArquivo<Pet>? CreateLeitorDePet(string nomeArquivo) => Path.GetExtension(nomeArquivo) switch
     {
-        ".csv" => new LeitorDeArquivoCsv(nomeArquivo),
-        ".json" => new LeitorDeArquivoJson(nomeArquivo),
+        ".csv" => new PetsDoCsv(nomeArquivo),
+        ".json" => new PetsDoJson(nomeArquivo),
         _ => null
     };
 }

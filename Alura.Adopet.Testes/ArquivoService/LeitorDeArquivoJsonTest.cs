@@ -39,7 +39,7 @@ public class LeitorDeArquivoJsonTest : IDisposable
     public void QuandoJsonValidoDeveRetornarListaDePetsNaoVazia()
     {
         // arrange
-        LeitorDeArquivoJson leitor = new(caminhoArquivo);
+        PetsDoJson leitor = new(caminhoArquivo);
 
         // act
         IEnumerable<Pet> listaDePets = leitor.RealizaLeitura();

@@ -3,11 +3,11 @@ using System.Text.Json;
 
 namespace Alura.Adopet.Console.Util;
 
-public class LeitorDeArquivoJson : ILeitorDeArquivo
+public class PetsDoJson : ILeitorDeArquivo<Pet>
 {
     private readonly string caminhoArquivo;
 
-    public LeitorDeArquivoJson(string caminhoArquivo) => this.caminhoArquivo = caminhoArquivo;
+    public PetsDoJson(string caminhoArquivo) => this.caminhoArquivo = caminhoArquivo;
 
     public IEnumerable<Pet> RealizaLeitura()
     {
