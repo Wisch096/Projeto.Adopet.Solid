@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Servicos.Http;
 using Alura.Adopet.Testes.Builder;
 
 namespace Alura.Adopet.Testes;

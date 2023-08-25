@@ -1,4 +1,4 @@
-﻿namespace Alura.Adopet.Console.Util;
+﻿namespace Alura.Adopet.Console.Servicos;
 
 public interface ILeitorDeArquivo<T>
 {

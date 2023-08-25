@@ -1,7 +1,7 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using System.Net.Http.Json;
 
-namespace Alura.Adopet.Console.Servicos;
+namespace Alura.Adopet.Console.Servicos.Http;
 
 public class ClienteService : IApiService<Cliente>
 {

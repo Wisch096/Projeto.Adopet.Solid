@@ -1,5 +1,5 @@
 ﻿using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Util;
+using Alura.Adopet.Console.Servicos;
 
 namespace Alura.Adopet.Console;
 public class ClientesDoCsv : ILeitorDeArquivo<Cliente>
