@@ -30,7 +30,7 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                List<Pet> listaDePet = leitor.RealizaLeitura();
+                var listaDePet = leitor.RealizaLeitura();
                 foreach (var pet in listaDePet)
                 {                       
                    await clientPet.CreatePetAsync(pet);               
