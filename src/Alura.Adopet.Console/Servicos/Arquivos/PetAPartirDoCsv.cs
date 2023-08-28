@@ -16,9 +16,9 @@ public static class PetAPartirDoCsv
         bool tipoValido = int.TryParse(propriedades[2], out int tipoPet);
         if (!tipoValido) throw new ArgumentException("Tipo do pet inválido!");
 
-        int[] enums = Array.ConvertAll(Enum.GetValues<TipoPet>(), value => (int)value);
-        if (!enums.Contains(tipoPet)) throw new ArgumentException("Tipo do pet inválido!");
+        //int[] enums = Array.ConvertAll(Enum.GetValues<TipoPet>(), value => (int)value);
+        //if (!enums.Contains(tipoPet)) throw new ArgumentException("Tipo do pet inválido!");
 
-        return new Pet(petId, propriedades[1], (TipoPet)tipoPet);
+        return new Pet(petId, propriedades[1], int.Parse(propriedades[2]) == 1 ? TipoPet.Gato : TipoPet.Cachorro);
     }
 }
