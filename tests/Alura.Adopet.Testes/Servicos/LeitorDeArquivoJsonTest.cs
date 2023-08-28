@@ -42,8 +42,7 @@ public class LeitorDeArquivoJsonTest : IDisposable
 
         //Assert
         Assert.NotNull(listaDePets);
-        Assert.Single(listaDePets);
-        Assert.IsType<List<Pet>?>(listaDePets);
+        Assert.Equal(3,listaDePets.Count());
     }
 
     public void Dispose()
