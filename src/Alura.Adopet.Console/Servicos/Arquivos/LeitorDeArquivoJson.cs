@@ -1,10 +1,9 @@
-﻿using Alura.Adopet.Console.Modelos;
+﻿using System.Text.Json;
 using Alura.Adopet.Console.Servicos.Abstracoes;
-using System.Text.Json;
 
 namespace Alura.Adopet.Console.Servicos.Arquivos;
 
-public class LeitorDeArquivoJson : ILeitorDeArquivo<Pet>
+public abstract class LeitorDeArquivoJson<T> : ILeitorDeArquivo<T>
 {
     private string caminhoArquivo;
 
@@ -13,9 +12,9 @@ public class LeitorDeArquivoJson : ILeitorDeArquivo<Pet>
         this.caminhoArquivo = caminhoArquivo;
     }
 
-    public IEnumerable<Pet> RealizaLeitura()
+    public IEnumerable<T> RealizaLeitura()
     {
         using Stream stream = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read);
-        return JsonSerializer.Deserialize<IEnumerable<Pet>>(stream) ?? Enumerable.Empty<Pet>();
+        return JsonSerializer.Deserialize<IEnumerable<T>>(stream) ?? Enumerable.Empty<T>();
     }
 }
