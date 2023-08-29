@@ -19,6 +19,34 @@ public class LeitorArquivoFactoryTest
     }
 
     [Fact]
+    public void QuandoExtensaoCsvDeveRetornarClientesDoCsv()
+    {
+        // arrange
+        string caminhoDoArquivo = "lista.csv";
+
+        // act
+        var leitor = LeitorDeArquivoFactory.CreateLeitorDeClientes(caminhoDoArquivo);
+
+        // assert
+        Assert.NotNull(leitor);
+        Assert.IsType<ClientesDoCsv>(leitor);
+    }
+
+    [Fact]
+    public void QuandoExtensaoJsonDeveRetornarClientesDoJson()
+    {
+        // arrange
+        string caminhoDoArquivo = "lista.json";
+
+        // act
+        var leitor = LeitorDeArquivoFactory.CreateLeitorDeClientes(caminhoDoArquivo);
+
+        // assert
+        Assert.NotNull(leitor);
+        Assert.IsType<ClientesDoJson>(leitor);
+    }
+
+    [Fact]
     public void QuandoExtensaoJsonDeveRetornarTipoAdequado()
     {
         // arrange

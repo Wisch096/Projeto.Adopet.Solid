@@ -5,6 +5,16 @@ namespace Alura.Adopet.Console.Servicos.Arquivos;
 
 public static class LeitorDeArquivoFactory
 {
+    public static ILeitorDeArquivo<Cliente>? CreateLeitorDeClientes(string caminhoArquivo)
+    {
+        return Path.GetExtension(caminhoArquivo) switch
+        {
+            ".csv" => new ClientesDoCsv(caminhoArquivo),
+            ".json" => new ClientesDoJson(caminhoArquivo),
+            _ => null
+        };
+    }
+
     public static ILeitorDeArquivo<Pet>? CreateLeitorDePets(string caminhoArquivo)
     {
         return Path.GetExtension(caminhoArquivo) switch
