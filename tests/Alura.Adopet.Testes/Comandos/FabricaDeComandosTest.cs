@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console;
+using Alura.Adopet.Console.Comandos;
 
 namespace Alura.Adopet.Testes.Comandos;
 
@@ -46,6 +47,17 @@ public class FabricaDeComandosTest
         var comando = ComandosFactory.CriarComando(args);
         //Assert
         Assert.IsType<Help>(comando);
+    }
+
+    [Fact]
+    public void DadoUmParametroDeveRetornarTipoImportClientes()
+    {
+        //Arrange
+        string[] args = { "import-clientes", "lista.csv" };
+        //Act
+        var comando = ComandosFactory.CriarComando(args);
+        //Assert
+        Assert.IsType<ImportClientes>(comando);
     }
 
     [Fact]

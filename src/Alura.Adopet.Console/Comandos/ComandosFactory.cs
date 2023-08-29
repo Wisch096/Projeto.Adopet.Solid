@@ -16,7 +16,7 @@ public static class ComandosFactory
         switch (comando)
         {
             case "import":
-            var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
+                var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
                 var leitorDeArquivos = LeitorDeArquivoFactory.CreateLeitorDePets(argumentos[1]);
                 if (leitorDeArquivos is null) return null;
                 return new Import(httpClientPet, leitorDeArquivos);                    
@@ -31,6 +31,9 @@ public static class ComandosFactory
             case "help":
                 var comandoASerExibido = argumentos.Length==2? argumentos[1] : null;
                 return new Help(comandoASerExibido);
+
+            case "import-clientes":
+                return new ImportClientes();
             default: return null;
         }           
     }
