@@ -12,7 +12,7 @@ public class LeitorArquivoFactoryTest
         string caminhoDoArquivo = "lista.csv";
 
         // act
-        ILeitorDeArquivo? leitor = LeitorDeArquivoFactory.CreateLeitor(caminhoDoArquivo);
+        var leitor = LeitorDeArquivoFactory.CreateLeitorDePets(caminhoDoArquivo);
 
         // assert
         Assert.NotNull(leitor);
@@ -26,7 +26,7 @@ public class LeitorArquivoFactoryTest
         string caminhoDoArquivo = "qualquernome.json";
 
         // act
-        ILeitorDeArquivo? leitor = LeitorDeArquivoFactory.CreateLeitor(caminhoDoArquivo);
+        var leitor = LeitorDeArquivoFactory.CreateLeitorDePets(caminhoDoArquivo);
 
         // assert
         Assert.NotNull(leitor);
