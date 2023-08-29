@@ -16,7 +16,7 @@ public class LeitorArquivoFactoryTest
 
         // assert
         Assert.NotNull(leitor);
-        Assert.IsType<LeitorDeArquivoCsv>(leitor);
+        Assert.IsType<PetsDoCsv>(leitor);
     }
 
     [Fact]
