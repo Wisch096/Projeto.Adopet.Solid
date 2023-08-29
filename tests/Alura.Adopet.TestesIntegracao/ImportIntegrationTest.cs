@@ -24,7 +24,7 @@ public class ImportIntegrationTest
         await import.ExecutarAsync();
         
         //Assert
-        var listaPet = await httpClientPet.ListPetsAsync();
+        var listaPet = await httpClientPet.ListAsync();
         Assert.NotNull(listaPet);
     }
 }
