@@ -38,7 +38,7 @@ public class LeitorDeArquivoJsonTest : IDisposable
         //Arrange            
 
         //Act
-        var listaDePets = new LeitorDeArquivoJson(caminhoArquivo).RealizaLeitura()!;
+        var listaDePets = new PetsDoJson(caminhoArquivo).RealizaLeitura()!;
 
         //Assert
         Assert.NotNull(listaDePets);

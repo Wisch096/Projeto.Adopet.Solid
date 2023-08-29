@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console.Servicos.Abstracoes;
-using Alura.Adopet.Console.Servicos.Arquivos;
+﻿using Alura.Adopet.Console.Servicos.Arquivos;
 
 namespace Alura.Adopet.Testes.Servicos;
 
@@ -30,6 +29,6 @@ public class LeitorArquivoFactoryTest
 
         // assert
         Assert.NotNull(leitor);
-        Assert.IsType<LeitorDeArquivoJson>(leitor);
+        Assert.IsType<PetsDoJson>(leitor);
     }
 }

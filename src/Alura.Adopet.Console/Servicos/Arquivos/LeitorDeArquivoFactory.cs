@@ -10,7 +10,7 @@ public static class LeitorDeArquivoFactory
         return Path.GetExtension(caminhoArquivo) switch
         {
             ".csv" => new PetsDoCsv(caminhoArquivo),
-            ".json" => new LeitorDeArquivoJson(caminhoArquivo),
+            ".json" => new PetsDoJson(caminhoArquivo),
             _ => null
         };
     }
