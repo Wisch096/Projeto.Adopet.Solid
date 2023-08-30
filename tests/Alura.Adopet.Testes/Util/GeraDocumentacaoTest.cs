@@ -27,7 +27,7 @@ public class GeraDocumentacaoTest
     [InlineData("show", true)]
     [InlineData("list", true)]
     [InlineData("import", true)]
-    [InlineData("import-clientes", false)]
+    [InlineData("import-clientes", true)]
     [InlineData("lixo", false)]
     [InlineData("", false)]
     [InlineData("   ", false)]
