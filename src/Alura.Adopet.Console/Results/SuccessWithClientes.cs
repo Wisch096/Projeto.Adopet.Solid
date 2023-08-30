@@ -5,7 +5,7 @@ namespace Alura.Adopet.Console;
 
 public class SuccessWithClientes : Success
 {
-    public SuccessWithClientes(IEnumerable<Cliente> data)
+    public SuccessWithClientes(IEnumerable<Cliente> data, string message) : base(message)
     {
         Data = data;
     }

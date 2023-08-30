@@ -15,6 +15,10 @@ public abstract class LeitorDeArquivoJson<T> : ILeitorDeArquivo<T>
     public IEnumerable<T> RealizaLeitura()
     {
         using Stream stream = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read);
-        return JsonSerializer.Deserialize<IEnumerable<T>>(stream) ?? Enumerable.Empty<T>();
+        JsonSerializerOptions options = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        return JsonSerializer.Deserialize<IEnumerable<T>>(stream, options) ?? Enumerable.Empty<T>();
     }
 }

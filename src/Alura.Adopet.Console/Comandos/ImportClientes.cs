@@ -2,6 +2,7 @@
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos.Abstracoes;
 using FluentResults;
+using System;
 
 namespace Alura.Adopet.Console.Comandos;
 
@@ -17,8 +18,22 @@ public class ImportClientes : IComando
         this.leitor = leitor;
     }
 
-    public Task<Result> ExecutarAsync()
+    public async Task<Result> ExecutarAsync()
     {
-        return Task.FromResult(Result.Ok());
+        try
+        {
+            var clientes = leitor.RealizaLeitura();
+
+            foreach (var cliente in clientes)
+            {
+                await service.CreateAsync(cliente);
+            }
+
+            return Result.Ok().WithSuccess(new SuccessWithClientes(clientes, "Importação realizada com sucesso!"));
+        }
+        catch (Exception exception)
+        {
+            return Result.Fail(new Error("Importação falhou!").CausedBy(exception));
+        }
     }
 }
