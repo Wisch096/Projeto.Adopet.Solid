@@ -1,10 +1,7 @@
 ﻿namespace Alura.Adopet.Console.Comandos;
 
-public interface IComandoFactory<TComando> where TComando : IComando
+public interface IComandoFactory
 {
-    bool ConsegueCriarOTipo(Type? tipoComando)
-    {
-        return tipoComando?.IsAssignableTo(typeof(TComando)) ?? false;
-    }
+    bool ConsegueCriarOTipo(Type? tipoComando);
     IComando? CriarComando(string[] argumentos);
 }
