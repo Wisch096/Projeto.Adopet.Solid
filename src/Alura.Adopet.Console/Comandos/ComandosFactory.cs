@@ -22,25 +22,20 @@ public static class ComandosFactory
             .GetTipoDoComando(comando);
 
         if (tipoQueAtendeAInstrucao is null) return null;
-        
-        switch (comando)
-        {
-            case "import":
-                return new ImportFactory().CriarComando(argumentos);
 
-            case "list":
-                return new ListFactory().CriarComando(argumentos);
+        IEnumerable<IComandoFactory?> fabricasDeComandos = Assembly
+            .GetExecutingAssembly()
+            .GetTypes()
+            // filtre os tipos concretos que implementam IComandoFactory
+            .Where(t => !t.IsInterface && t.IsAssignableTo(typeof(IComandoFactory)))
+            // criar instâncias de cada fábrica (não é o ideal)
+            .Select(f => Activator.CreateInstance(f) as IComandoFactory);
 
-            case "show":
-                return new ShowFactory().CriarComando(argumentos);
+        // recuperar somente o responsável por criar o tipoQueAtendeAInstrucao
+        IComandoFactory? fabrica = fabricasDeComandos
+            .FirstOrDefault(f => f!.ConsegueCriarOTipo(tipoQueAtendeAInstrucao));
 
-            case "help":
-                return new HelpFactory().CriarComando(argumentos);
-
-            case "import-clientes":
-                return new ImportClientesFactory().CriarComando(argumentos);
-
-            default: return null;
-        }           
+        if (fabrica is null) return null;
+        return fabrica.CriarComando(argumentos);
     }
 }
