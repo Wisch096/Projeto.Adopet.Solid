@@ -2,13 +2,8 @@
 
 namespace Alura.Adopet.Console.Comandos;
 
-public class ListFactory : IComandoFactory
+public class ListFactory : IComandoFactory<List>
 {
-    public bool ConsegueCriarOTipo(Type? tipoComando)
-    {
-        return tipoComando?.IsAssignableTo(typeof(List)) ?? false;
-    }
-
     public IComando? CriarComando(string[] argumentos)
     {
         var httpClientPetList = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));

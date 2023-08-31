@@ -2,13 +2,8 @@
 
 namespace Alura.Adopet.Console.Comandos;
 
-public class ShowFactory : IComandoFactory
+public class ShowFactory : IComandoFactory<Show>
 {
-    public bool ConsegueCriarOTipo(Type? tipoComando)
-    {
-        return tipoComando?.IsAssignableTo(typeof(Show)) ?? false;
-    }
-
     public IComando? CriarComando(string[] argumentos)
     {
         var leitorDeArquivosShow = LeitorDeArquivoFactory.CreateLeitorDePets(argumentos[1]);

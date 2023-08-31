@@ -3,13 +3,8 @@ using Alura.Adopet.Console.Servicos.Http;
 
 namespace Alura.Adopet.Console.Comandos;
 
-public class ImportClientesFactory : IComandoFactory
+public class ImportClientesFactory : IComandoFactory<ImportClientes>
 {
-    public bool ConsegueCriarOTipo(Type? tipoComando)
-    {
-        return tipoComando?.IsAssignableTo(typeof(ImportClientes)) ?? false;
-    }
-
     public IComando? CriarComando(string[] argumentos)
     {
         var serviceClientes = new ClienteService(new AdopetAPIClientFactory().CreateClient("adopet"));
