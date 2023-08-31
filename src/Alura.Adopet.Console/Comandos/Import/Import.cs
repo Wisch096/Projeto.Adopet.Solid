@@ -8,11 +8,13 @@ namespace Alura.Adopet.Console.Comandos
 {
     [DocComandoAttribute(instrucao: "import",
         documentacao: "adopet import <ARQUIVO> comando que realiza a importação do arquivo de pets.")]
-    public class Import:IComando
+    public class Import : IComando, IDepoisDaExecucao
     {
         private readonly IApiService<Pet> clientPet;
 
         private readonly ILeitorDeArquivo<Pet> leitor;
+
+        public event Action<Result>? DepoisDaExecucao;
 
         public Import(IApiService<Pet> clientPet, ILeitorDeArquivo<Pet> leitor)
         {
@@ -34,17 +36,14 @@ namespace Alura.Adopet.Console.Comandos
                 {                       
                    await clientPet.CreateAsync(pet);               
                 }
-                return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet,"Importação Realizada com Sucesso!"));
+                var resultado = Result.Ok().WithSuccess(new SuccessWithPets(listaDePet,"Importação Realizada com Sucesso!"));
+                DepoisDaExecucao?.Invoke(resultado);
+                return resultado;
             }
             catch (Exception exception)
             {
-
                 return Result.Fail(new Error("Importação falhou!").CausedBy(exception));
             }
-            
-            
-            
-            
         }
     }
 }

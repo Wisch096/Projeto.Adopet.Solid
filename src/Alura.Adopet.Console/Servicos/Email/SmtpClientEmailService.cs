@@ -20,13 +20,14 @@ public class SmtpClientEmailService : IEmailService
     {
         var message = new MailMessage
         {
-            From = new MailAddress(destinatario),
+            From = new MailAddress(remetente),
             Subject = titulo,
             Body = corpo
         };
         
-        message.To.Add(new MailAddress(remetente));
+        message.To.Add(new MailAddress(destinatario));
 
-        return smtpClient.SendMailAsync(message);
+        smtpClient.Send(message);
+        return Task.CompletedTask;
     }
 }
