@@ -17,7 +17,7 @@ public class ImportFactory : IComandoFactory
 
     private IEmailService CriarEmailService()
     {
-        AppSettings emailOptions = Configurations.GetSettings();
+        MailSettings emailOptions = Configurations.MailSettings;
         var smtpClient = new SmtpClient()
         {
             Host = emailOptions.Servidor,
@@ -36,7 +36,7 @@ public class ImportFactory : IComandoFactory
 
         if (success is SuccessWithPets sucesso)
         {
-            AppSettings emailOptions = Configurations.GetSettings();
+            MailSettings emailOptions = Configurations.MailSettings;
 
             var emailService = CriarEmailService();
             emailService.SendMessageAsync(
@@ -55,8 +55,8 @@ public class ImportFactory : IComandoFactory
 
     public IComando? CriarComando(string[] argumentos)
     {
-        
-        var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
+        var uri = Configurations.ApiSettings.Uri;
+        var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory(uri).CreateClient("adopet"));
         var leitorDeArquivos = LeitorDeArquivoFactory.CreateLeitorDePets(argumentos[1]);
         if (leitorDeArquivos is null) return null;
         var comando = new Import(httpClientPet, leitorDeArquivos);

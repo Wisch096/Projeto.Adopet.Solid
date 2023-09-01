@@ -1,6 +1,6 @@
 ﻿namespace Alura.Adopet.Console.Settings;
 
-public class AppSettings
+public class MailSettings
 {
     public const string EmailSection = "AdopetEmailConfiguration";
     public string? Usuario { get; set; }
