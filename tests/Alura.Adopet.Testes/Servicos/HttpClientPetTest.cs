@@ -70,7 +70,7 @@ public class HttpClientPetTest
         var clientePet = new HttpClientPet(httpClient.Object);
 
         //Act
-        var lista = await clientePet.ListPetsAsync();
+        var lista = await clientePet.ListAsync();
 
         //Assert
         Assert.NotNull(lista);
@@ -96,7 +96,7 @@ public class HttpClientPetTest
         var clientePet = new HttpClientPet(httpClient.Object);
 
         //Act+Assert
-        await Assert.ThrowsAnyAsync<Exception>(() => clientePet.ListPetsAsync());
+        await Assert.ThrowsAnyAsync<Exception>(() => clientePet.ListAsync());
 
     }
 

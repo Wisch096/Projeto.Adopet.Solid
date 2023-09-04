@@ -17,7 +17,7 @@ internal static class HttpClientPetMockBuilder
     {
         var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
             It.IsAny<HttpClient>());
-        httpClientPet.Setup(_ => _.ListPetsAsync())
+        httpClientPet.Setup(_ => _.ListAsync())
             .ReturnsAsync(lista);
         return httpClientPet;
     }

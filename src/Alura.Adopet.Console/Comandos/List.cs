@@ -26,7 +26,7 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                IEnumerable<Pet>? pets = await clientPet.ListPetsAsync();               
+                IEnumerable<Pet>? pets = await clientPet.ListAsync();               
                 return Result.Ok().WithSuccess(new SuccessWithPets(pets,"Listagem de Pet's realizada com sucesso!"));
             }
             catch (Exception exception)
