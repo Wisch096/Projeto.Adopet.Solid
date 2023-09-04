@@ -4,6 +4,7 @@ using Alura.Adopet.Console.Servicos.Http;
 using Alura.Adopet.Console.Atributos;
 using FluentResults;
 using Alura.Adopet.Console.Results;
+using Alura.Adopet.Console.Servicos.Abstracoes;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -13,9 +14,9 @@ namespace Alura.Adopet.Console.Comandos
     {
         private readonly HttpClientPet clientPet;
 
-        private readonly LeitorDeArquivoCsv leitor;
+        private readonly ILeitorDeArquivo leitor;
 
-        public Import(HttpClientPet clientPet, LeitorDeArquivoCsv leitor)
+        public Import(HttpClientPet clientPet, ILeitorDeArquivo leitor)
         {
             this.clientPet = clientPet;
             this.leitor = leitor;
@@ -30,7 +31,7 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                List<Pet> listaDePet = leitor.RealizaLeitura();
+                var listaDePet = leitor.RealizaLeitura();
                 foreach (var pet in listaDePet)
                 {                       
                    await clientPet.CreatePetAsync(pet);               
