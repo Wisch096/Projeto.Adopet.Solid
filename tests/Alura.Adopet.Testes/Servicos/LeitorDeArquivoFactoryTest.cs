@@ -12,7 +12,7 @@ public class LeitorDeArquivoFactoryTest
         string caminhoArquivo = "pets.csv";
 
         // act
-        var leitor = LeitorDeArquivoFactory.CreateFrom(caminhoArquivo);
+        var leitor = LeitorDeArquivoFactory.CreateLeitorPetFrom(caminhoArquivo);
 
         // assert
         Assert.IsType<LeitorDeArquivoCsv>(leitor);
@@ -25,7 +25,7 @@ public class LeitorDeArquivoFactoryTest
         string caminhoArquivo = "pets.json";
 
         // act
-        var leitor = LeitorDeArquivoFactory.CreateFrom(caminhoArquivo);
+        var leitor = LeitorDeArquivoFactory.CreateLeitorPetFrom(caminhoArquivo);
 
         // assert
         Assert.IsType<LeitorDeArquivoJson>(leitor);
@@ -38,7 +38,7 @@ public class LeitorDeArquivoFactoryTest
         string caminhoArquivo = "pets.xsl";
 
         // act
-        var leitor = LeitorDeArquivoFactory.CreateFrom(caminhoArquivo);
+        var leitor = LeitorDeArquivoFactory.CreateLeitorPetFrom(caminhoArquivo);
 
         // assert
         Assert.Null(leitor);
