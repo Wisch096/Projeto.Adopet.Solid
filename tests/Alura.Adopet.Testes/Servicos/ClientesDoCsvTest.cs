@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Servicos.Arquivos;
+﻿using Alura.Adopet.Console;
+using Alura.Adopet.Console.Servicos.Arquivos;
 
 namespace Alura.Adopet.Testes.Servicos;
 

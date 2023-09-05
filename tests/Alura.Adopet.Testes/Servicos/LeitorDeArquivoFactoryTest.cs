@@ -15,7 +15,7 @@ public class LeitorDeArquivoFactoryTest
         var leitor = LeitorDeArquivoFactory.CreateLeitorPetFrom(caminhoArquivo);
 
         // assert
-        Assert.IsType<LeitorDeArquivoCsv>(leitor);
+        Assert.IsType<PetsDoCsv>(leitor);
     }
 
     [Fact]

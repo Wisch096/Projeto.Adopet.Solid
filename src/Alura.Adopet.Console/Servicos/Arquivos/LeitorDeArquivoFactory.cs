@@ -11,7 +11,7 @@ public static class LeitorDeArquivoFactory
         switch (extensao)
         {
             case ".csv": 
-                return new LeitorDeArquivoCsv(caminhoArquivo);
+                return new PetsDoCsv(caminhoArquivo);
             case ".json":
                 return new LeitorDeArquivoJson(caminhoArquivo);
             default: return null;
