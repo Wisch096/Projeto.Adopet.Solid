@@ -32,6 +32,19 @@ public class LeitorDeArquivoFactoryTest
     }
 
     [Fact]
+    public void QuantoNomeForClientesCsvDeveRetornarTipoClientesDoCsv()
+    {
+        // arrange
+        string caminhoArquivo = "clientes.csv";
+
+        // act
+        var leitor = LeitorDeArquivoFactory.CreateLeitorClienteFrom(caminhoArquivo);
+
+        // assert
+        Assert.IsType<ClientesDoCsv>(leitor);
+    }
+
+    [Fact]
     public void QuantoExtensaoNaoSuportadaDeveRetornarNulo()
     {
         // arrange
