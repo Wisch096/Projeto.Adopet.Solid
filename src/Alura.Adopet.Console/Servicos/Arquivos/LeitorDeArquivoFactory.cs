@@ -13,8 +13,7 @@ public static class LeitorDeArquivoFactory
             case ".csv":
                 return new ClientesDoCsv(caminhoArquivo);
             case ".json":
-                return null;
-                // return new LeitorDeArquivoJson(caminhoArquivo);
+                return new LeitorDeArquivoJson<Cliente>(caminhoArquivo);
             default: return null;
         }
     }
@@ -27,7 +26,7 @@ public static class LeitorDeArquivoFactory
             case ".csv": 
                 return new PetsDoCsv(caminhoArquivo);
             case ".json":
-                return new LeitorDeArquivoJson(caminhoArquivo);
+                return new LeitorDeArquivoJson<Pet>(caminhoArquivo);
             default: return null;
         }
     }

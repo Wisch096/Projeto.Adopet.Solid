@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Servicos.Arquivos;
+﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Servicos.Arquivos;
 
 namespace Alura.Adopet.Testes.Servicos;
 
@@ -40,7 +41,7 @@ public class LeitorDeArquivoJsonTest : IDisposable
     {
         //Arrange            
         //Act
-        var listaDePets = new LeitorDeArquivoJson(caminhoArquivo).RealizaLeitura()!;
+        var listaDePets = new LeitorDeArquivoJson<Pet>(caminhoArquivo).RealizaLeitura()!;
         //Assert
         Assert.NotNull(listaDePets);
         Assert.Equal(3, listaDePets.Count());
