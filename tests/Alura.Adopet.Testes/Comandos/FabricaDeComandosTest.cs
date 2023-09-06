@@ -4,59 +4,21 @@ namespace Alura.Adopet.Testes.Comandos;
 
 public class FabricaDeComandosTest
 {
-    [Fact]
-    public void DadoUmParametroDeveRetornarUmTipoImport()
+    [Theory]
+    [InlineData("import","Import")]
+    [InlineData("import-clientes", "ImportClientes")]
+    [InlineData("show", "Show")]
+    [InlineData("list", "List")]
+    [InlineData("help", "Help")]
+    public void DadoParametroValidoDeveRetornarObjetoNaoNulo(string instrucao, string nomeTipo)
     {
-        //Arrange
-        string[] args = { "import", "lista.csv" };
-        //Act
+        // arrange
+        string[] args = new[] { instrucao, "lista.csv" };
+        // act
         var comando = ComandosFactory.CriarComando(args);
-        //Assert
-        Assert.IsType<Import>(comando);
-    }
-
-    [Fact]
-    public void DadoParametroListDeveRetornarTipoList()
-    {
-        //Arrange
-        string[] args = { "list", "lista.csv" };
-        //Act
-        var comando = ComandosFactory.CriarComando(args);
-        //Assert
-        Assert.IsType<List>(comando);
-    }
-
-    [Fact]
-    public void DadoParametroShowDeveRetornarTipoShow()
-    {
-        //Arrange
-        string[] args = { "show", "lista.csv" };
-        //Act
-        var comando = ComandosFactory.CriarComando(args);
-        //Assert
-        Assert.IsType<Show>(comando);
-    }
-
-    [Fact]
-    public void DadoParametroHelpDeveRetornarTipoHelp()
-    {
-        //Arrange
-        string[] args = { "help", "lista.csv" };
-        //Act
-        var comando = ComandosFactory.CriarComando(args);
-        //Assert
-        Assert.IsType<Help>(comando);
-    }
-
-    [Fact]
-    public void DadoParametroIportClientesDeveRetornarTipoImportClientes()
-    {
-        //Arrange
-        string[] args = { "import-clientes", "lista.csv" };
-        //Act
-        var comando = ComandosFactory.CriarComando(args);
-        //Assert
-        Assert.IsType<ImportClientes>(comando);
+        // assert
+        Assert.NotNull(comando);
+        Assert.Equal(nomeTipo, comando.GetType().Name);
     }
 
     [Fact]
@@ -84,7 +46,7 @@ public class FabricaDeComandosTest
     public void DadoUmArrayDeArgumentosVazioDeveRetornarNulo()
     {
         //Arrange
-        string[] args = { };
+        string[] args = Array.Empty<string>();
         //Act
         var comando = ComandosFactory.CriarComando(args);
         //Assert
