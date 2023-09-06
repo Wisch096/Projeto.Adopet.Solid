@@ -30,6 +30,13 @@ public static class ComandosFactory
             case "help":
                 var comandoASerExibido = argumentos.Length==2? argumentos[1] : null;
                 return new Help(comandoASerExibido);
+
+            case "import-clientes":
+                var clienteService = new ClienteService(new AdopetAPIClientFactory().CreateClient("adopet"));
+                var leitorClientes = LeitorDeArquivoFactory.CreateLeitorClienteFrom(argumentos[1]);
+                if (leitorClientes is null) return null;
+                return new ImportClientes(clienteService, leitorClientes);
+
             default: return null;
         }           
     }

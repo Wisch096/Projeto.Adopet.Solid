@@ -16,6 +16,28 @@ public class FabricaDeComandosTest
     }
 
     [Fact]
+    public void DadoParametroListDeveRetornarTipoList()
+    {
+        //Arrange
+        string[] args = { "list", "lista.csv" };
+        //Act
+        var comando = ComandosFactory.CriarComando(args);
+        //Assert
+        Assert.IsType<List>(comando);
+    }
+
+    [Fact]
+    public void DadoParametroIportClientesDeveRetornarTipoImportClientes()
+    {
+        //Arrange
+        string[] args = { "import-clientes", "lista.csv" };
+        //Act
+        var comando = ComandosFactory.CriarComando(args);
+        //Assert
+        Assert.IsType<ImportClientes>(comando);
+    }
+
+    [Fact]
     public void DadoUmParametroInvalidoDeveRetornarNulo()
     {
         //Arrange
