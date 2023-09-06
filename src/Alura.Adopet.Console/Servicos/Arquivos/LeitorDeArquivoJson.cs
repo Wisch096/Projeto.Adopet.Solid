@@ -16,6 +16,10 @@ public class LeitorDeArquivoJson<T> : ILeitorDeArquivo<T>
     public IEnumerable<T> RealizaLeitura()
     {
         using var stream = new FileStream(caminhoArquivoASerLido, FileMode.Open, FileAccess.Read);
-        return JsonSerializer.Deserialize<IEnumerable<T>>(stream);
+        JsonSerializerOptions options = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        return JsonSerializer.Deserialize<IEnumerable<T>>(stream, options) ?? throw new ArgumentException($"Erro na deserialização do arquivo {caminhoArquivoASerLido}");
     }
 }
