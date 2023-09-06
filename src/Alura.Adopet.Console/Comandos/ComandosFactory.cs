@@ -26,7 +26,7 @@ public static class ComandosFactory
             .GetTypes()
             // filtre os tipos concretos que implementam IComandoFactory
             .Where(t => !t.IsInterface && t.IsAssignableTo(typeof(IComandoFactory)))
-            // criar instâncias de cada fábrica (não é o ideal)
+            // criar instâncias de cada fábrica
             .Select(f => Activator.CreateInstance(f) as IComandoFactory);
 
         IComandoFactory? fabrica = fabricasDeComandos
