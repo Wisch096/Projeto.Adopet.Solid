@@ -1,5 +1,7 @@
 ﻿using Alura.Adopet.Console.Servicos.Http;
 using Alura.Adopet.Console.Servicos.Arquivos;
+using System.Reflection;
+using Alura.Adopet.Console.Extensions;
 
 namespace Alura.Adopet.Console.Comandos;
 
@@ -12,24 +14,26 @@ public static class ComandosFactory
             return null;
         }
         var comando = argumentos[0];
-        switch (comando)
-        {
-            case "import":
-                return new ImportFactory().CriarComando(argumentos);
 
-            case "list":
-                return new ListFactory().CriarComando(argumentos);
+        Type? tipoQueAtendeOComando = Assembly
+            .GetExecutingAssembly()
+            .GetTipoDoComando(comando);
 
-            case "show":
-                return new ShowFactory().CriarComando(argumentos);
+        if (tipoQueAtendeOComando is null) return null;
 
-            case "help":
-                return new HelpFactory().CriarComando(argumentos);
+        IEnumerable<IComandoFactory?> fabricasDeComandos = Assembly
+            .GetExecutingAssembly()
+            .GetTypes()
+            // filtre os tipos concretos que implementam IComandoFactory
+            .Where(t => !t.IsInterface && t.IsAssignableTo(typeof(IComandoFactory)))
+            // criar instâncias de cada fábrica (não é o ideal)
+            .Select(f => Activator.CreateInstance(f) as IComandoFactory);
 
-            case "import-clientes":
-                return new ImportClientesFactory().CriarComando(argumentos);
+        IComandoFactory? fabrica = fabricasDeComandos
+            .FirstOrDefault(f => f!.ConsegueCriarOTipo(tipoQueAtendeOComando));
 
-            default: return null;
-        }           
+        if (fabrica is null) return null;
+
+        return fabrica.CriarComando(argumentos);
     }
 }
