@@ -15,12 +15,12 @@ public class ClienteService : IApiService<Cliente>
 
     public Task CreateAsync(Cliente cliente)
     {
-        return client.PostAsJsonAsync("clientes/add", cliente);
+        return client.PostAsJsonAsync("cliente/add", cliente);
     }
 
     public async Task<IEnumerable<Cliente>?> ListAsync()
     {
-        HttpResponseMessage response = await client.GetAsync("clientes/list");
+        HttpResponseMessage response = await client.GetAsync("cliente/list");
         return await response.Content.ReadFromJsonAsync<IEnumerable<Cliente>>();
     }
 }
