@@ -2,6 +2,8 @@
 using Alura.Adopet.Console.Servicos.Arquivos;
 using Alura.Adopet.Console.Servicos.Http;
 using Alura.Adopet.Console.Servicos.Mail;
+using Alura.Adopet.Console.Settings;
+using System.Net;
 using System.Net.Mail;
 
 namespace Alura.Adopet.Console.Comandos;
@@ -15,9 +17,14 @@ public class ImportFactory : IComandoFactory
 
     private IMailService CriarMailService()
     {
+        AppSettings settings = Configurations.GetSettings();
         SmtpClient smtpClient = new()
         {
-
+            Host = settings.Servidor!,
+            Port = settings.Porta,
+            Credentials = new NetworkCredential(settings.Usuario, settings.Senha),
+            EnableSsl = true,
+            UseDefaultCredentials = false
         };
         return new SmtpClientMailService(smtpClient);
     }
