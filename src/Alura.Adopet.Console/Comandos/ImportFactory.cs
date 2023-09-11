@@ -20,6 +20,8 @@ public class ImportFactory : IComandoFactory
         var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
         var leitorDeArquivos = LeitorDeArquivoFactory.CreateLeitorPetFrom(argumentos[1]);
         if (leitorDeArquivos is null) return null;
-        return new Import(httpClientPet, leitorDeArquivos);
+        var import = new Import(httpClientPet, leitorDeArquivos);
+        import.DepoisDaExecucao += EnvioDeEmail.Disparar;
+        return import;
     }
 }

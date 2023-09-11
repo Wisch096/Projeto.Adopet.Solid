@@ -7,9 +7,9 @@ using Alura.Adopet.Console.Results;
 
 namespace Alura.Adopet.Console.Servicos.Mail;
 
-public class EnvioDeEmail
+public static class EnvioDeEmail
 {
-    private IMailService CriarMailService()
+    private static IMailService CriarMailService()
     {
         AppSettings settings = Configurations.GetSettings();
         SmtpClient smtpClient = new()
@@ -23,7 +23,7 @@ public class EnvioDeEmail
         return new SmtpClientMailService(smtpClient);
     }
 
-    public void Disparar(Result resultado)
+    public static void Disparar(Result resultado)
     {
         ISuccess? success = resultado.Successes.FirstOrDefault();
         if (success is null) return;
