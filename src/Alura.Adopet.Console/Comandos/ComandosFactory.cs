@@ -9,7 +9,7 @@ public static class ComandosFactory
     {
         if ((argumentos is null) || (argumentos.Length == 0))
         {
-            return null;
+            return null;           
         }
         var comando = argumentos[0];
         switch (comando)
