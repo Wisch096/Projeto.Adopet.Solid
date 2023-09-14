@@ -9,7 +9,7 @@ public class LeitorDeArquivosJson<T>: ILeitorDeArquivos<T>
     {
         this.caminhoArquivo = caminhoArquivo;
     }
-
+    
     public IEnumerable<T> RealizaLeitura()
     {
         using var stream = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read);
