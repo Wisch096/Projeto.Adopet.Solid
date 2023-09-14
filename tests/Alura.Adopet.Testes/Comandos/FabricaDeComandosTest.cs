@@ -16,6 +16,17 @@ public class FabricaDeComandosTest
     }
 
     [Fact]
+    public void DadoUmParametroDeveRetornarUmTipoList()
+    {
+        //Arrange
+        string[] args = { "list", "lista.csv" };
+        //Act
+        var comando = ComandosFactory.CriarComando(args);
+        //Assert
+        Assert.IsType<List>(comando);
+    }
+
+    [Fact]
     public void DadoUmParametroInvalidoDeveRetornarNulo()
     {
         //Arrange
