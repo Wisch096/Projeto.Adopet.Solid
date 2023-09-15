@@ -20,24 +20,13 @@ public static class ComandosFactory
             case "import":
                 return new ImportFactory().CriarComando(argumentos);
             case "import-clientes":
-                var service = new ClienteService(new AdopetAPIClientFactory().CreateClient("adopet"));
-                var leitorDeArquivosCliente = LeitorDeArquivosFactory.CreateClienteFrom(argumentos[1]);
-                if (leitorDeArquivosCliente is null) { return null; }
-                return new ImportClientes(service, leitorDeArquivosCliente);
-
+                return new ImportClientesFactory().CriarComando(argumentos);
             case "list":
-                var httpClientPetList = new PetService(new AdopetAPIClientFactory().CreateClient("adopet"));
-                return new List(httpClientPetList);
-
+                return new ListFactory().CriarComando(argumentos);
             case "show":
-                var leitorDeArquivosShow = LeitorDeArquivosFactory.CreatePetFrom(argumentos[1]);
-                if (leitorDeArquivosShow is null) { return null; }
-                return new Show(leitorDeArquivosShow);
-
+                return new ShowFactory().CriarComando(argumentos);
             case "help":
-                var comandoASerExibido = argumentos.Length==2? argumentos[1] : null;
-                return new Help(comandoASerExibido);
-
+                return new HelpFactory().CriarComando(argumentos);
             default: return null;
         }           
     }
