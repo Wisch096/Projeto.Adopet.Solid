@@ -18,11 +18,7 @@ public static class ComandosFactory
         switch (comando)
         {
             case "import":
-                var httpClientPet = new PetService(new AdopetAPIClientFactory().CreateClient("adopet"));
-                var leitorDeArquivos = LeitorDeArquivosFactory.CreatePetFrom(argumentos[1]);
-                if (leitorDeArquivos is null) { return null; }
-                return new Import(httpClientPet, leitorDeArquivos);
-
+                return new ImportFactory().CriarComando(argumentos);
             case "import-clientes":
                 var service = new ClienteService(new AdopetAPIClientFactory().CreateClient("adopet"));
                 var leitorDeArquivosCliente = LeitorDeArquivosFactory.CreateClienteFrom(argumentos[1]);
