@@ -14,4 +14,16 @@ public static class ComandosExtensions
             .FirstOrDefault(t => t.GetCustomAttributes<DocComandoAttribute>()
             .Any(d => d.Instrucao.Equals(instrucao))); // recuperar apenas aquele que atende à instrução "instrucao"
     }
+
+    public static IEnumerable<IComandoFactory?> GetFabricas(this Assembly assembly)
+    {
+        return assembly
+            .GetTypes()
+            // filtre os tipos concretos que implementam IComandoFactory
+            .Where(t => !t.IsInterface && t.IsAssignableTo(typeof(IComandoFactory)))
+            // criar instâncias de cada fábrica (não é o ideal)
+            .Select(f => Activator.CreateInstance(f) as IComandoFactory);
+    }
+
+
 }
