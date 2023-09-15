@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using Alura.Adopet.Console.Servicos.Http;
+using Alura.Adopet.Console.Servicos.Arquivos;
+using System.Reflection;
 using Alura.Adopet.Console.Extensions;
 
 namespace Alura.Adopet.Console.Comandos;
