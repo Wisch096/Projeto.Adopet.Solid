@@ -11,16 +11,29 @@ public static class Configurations
             .Build();
     }
 
-    public static AppSettings ApiSetting
+    public static ApiSettings ApiSetting
     {
         get
         {
             var _config = BuildConfiguration();
             return _config
-                .GetSection(AppSettings.Section)
-                .Get<AppSettings>() ??
+                .GetSection(ApiSettings.Section)
+                .Get<ApiSettings>() ??
                 throw new ArgumentException("Seção para configuração da API não encontrada!");
         }
     }
+
+    public static MailSettings MailSetting
+    {
+        get
+        {
+            var _config = BuildConfiguration();
+            return _config
+                .GetSection(MailSettings.EmailSection)
+                .Get<MailSettings>() ??
+                throw new ArgumentException("Seção para configuração do e-mail não encontrada!");
+        }
+    }
+
 
 }
