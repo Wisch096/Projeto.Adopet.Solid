@@ -8,6 +8,7 @@ public static class Configurations
         return new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddUserSecrets("61d71028-6014-4dc4-9e48-04652af5e08e")
             .Build();
     }
 
