@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Mail;
 
 namespace Alura.Adopet.Console.Servicos.Mail;
-public class EnvioDeEmail
+public static class EnvioDeEmail
 {
-    private IMailService CriarMailService()
+    private static IMailService CriarMailService()
     {
         MailSettings settings = Configurations.MailSetting;
         SmtpClient smtp = new()
@@ -22,7 +22,7 @@ public class EnvioDeEmail
         return new SmtpClientMailService(smtp);
     }
 
-    public void Disparar(Result resultado)
+    public static void Disparar(Result resultado)
     {
         ISuccess? success = resultado.Successes.FirstOrDefault();
         if (success is null) return;
